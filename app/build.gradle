@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdk 32
+    defaultConfig {
+        applicationId "com.cleanup.todoc"
+        minSdkVersion 21
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
+//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        disable 'RestrictedApi'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+
+    implementation 'com.google.android.material:material:1.4.0'
+
+    //ROOM
+    implementation "androidx.room:room-runtime:2.3.0"
+    testImplementation 'junit:junit:4.13.2'
+    annotationProcessor "androidx.room:room-compiler:2.3.0"
+
+    //VIEW MODEL & LIVE DATA
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    // TESTING
+    androidTestImplementation 'androidx.test:core:1.5.0'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+}
