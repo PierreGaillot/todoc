@@ -1,12 +1,10 @@
 package com.cleanup.todoc.database.dao;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
+import com.cleanup.todoc.database.entities.Task;
 
 import java.util.List;
 
@@ -25,7 +23,7 @@ public interface TaskDao {
      * @return
      */
     @Query("SELECT * FROM Task")
-    LiveData<List<Task>> getTasks();
+    List<Task> getTasks();
 
     /**
      * Return LiveData list of Tasks by
@@ -33,7 +31,7 @@ public interface TaskDao {
      * @return
      */
     @Query("SELECT * FROM Task WHERE projectId = :projectId")
-    LiveData<List<Task>> getTasksByProject(long projectId);
+    List<Task> getTasksByProject(long projectId);
 
     /**
      *  Remove Task from database by taskId

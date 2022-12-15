@@ -1,9 +1,8 @@
-package com.cleanup.todoc.model;
+package com.cleanup.todoc.database.entities;
 
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -55,25 +54,7 @@ public class Project {
 //        };
 //    }
 
-    /**
-     * Returns the project with the given unique identifier, or null if no project with that
-     * identifier can be found.
-     * @param id the unique identifier of the project to return
-     * @return the project with the given unique identifier, or null if it has not been found
-     */
-//    @Nullable
-//    public static Project getProjectById(long id) {
-//        for (Project project : getAllProjects()) {
-//            if (project.id == id)
-//                return project;
-//        }
-//        return null;
-//    }
 
-    public static Project getProjectById(long projectId){
-       ProjectRepository projectRepository = ProjectRepository.getInstance();
-       return null;
-    }
 
     /**
      * Returns the unique identifier of the project.

@@ -11,7 +11,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.cleanup.todoc.database.TudocDatabase;
-import com.cleanup.todoc.model.Project;
+import com.cleanup.todoc.database.entities.Project;
 
 import org.junit.After;
 import org.junit.Before;
@@ -55,7 +55,7 @@ public class ProjectDaoTest {
         this.database.projectDao().createProject(PROJECT_DEMO);
 
         // TEST
-        Project project = LiveDataTestUtil.getValue(this.database.projectDao().getProjects()).get(0);
+        Project project = database.projectDao().getProjects().get(0);
         assertTrue(project.getName().equals(PROJECT_DEMO.getName()) && project.getId() == PROJECT_ID);
     }
 
@@ -66,7 +66,7 @@ public class ProjectDaoTest {
         this.database.projectDao().createProject(new Project(2, "project 2", 123));
         this.database.projectDao().createProject(new Project(3, "project 3", 123));
 
-        List<Project> projects = LiveDataTestUtil.getValue(this.database.projectDao().getProjects());
+        List<Project> projects =database.projectDao().getProjects();
         assertEquals(projects.size(), 3);
     }
 
@@ -74,13 +74,13 @@ public class ProjectDaoTest {
     public void deleteProject() throws InterruptedException {
         // BEFORE : Add new project
         this.database.projectDao().createProject(PROJECT_DEMO);
-        Project project = LiveDataTestUtil.getValue(this.database.projectDao().getProjects()).get(0);
+        Project project = database.projectDao().getProjects().get(0);
         // BEFORE TEST : assert if this project exist
         assertTrue(project.getName().equals(PROJECT_DEMO.getName()) && project.getId() == PROJECT_ID);
 
         // -- TEST --
         this.database.projectDao().deleteProject(PROJECT_DEMO);
-        assertTrue("the project was deleted",  LiveDataTestUtil.getValue(this.database.projectDao().getProjects()).isEmpty());
+        assertTrue("the project was deleted", database.projectDao().getProjects().isEmpty());
     }
 
     @Test
@@ -88,7 +88,7 @@ public class ProjectDaoTest {
         this.database.projectDao().createProject(PROJECT_DEMO);
         this.database.projectDao().createProject(PROJECT_DEMO);
 
-        assertEquals(LiveDataTestUtil.getValue(this.database.projectDao().getProjects()).size(), 1);
+        assertEquals(1, database.projectDao().getProjects().size());
     }
 
     @Test
@@ -98,9 +98,9 @@ public class ProjectDaoTest {
         this.database.projectDao().createProject(new Project(2, "project 2", 123));
         this.database.projectDao().createProject(new Project(3, "project 3", 123));
 
-        assertEquals(3, LiveDataTestUtil.getValue(this.database.projectDao().getProjects()).size());
+        assertEquals(3, database.projectDao().getProjects().size());
         this.database.projectDao().deleteProjects();
-        assertEquals(0, LiveDataTestUtil.getValue(this.database.projectDao().getProjects()).size());
+        assertEquals(0,database.projectDao().getProjects().size());
     }
 
 }

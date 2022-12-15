@@ -1,7 +1,5 @@
 package com.cleanup.todoc.database;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.DatabaseConfiguration;
@@ -14,8 +12,8 @@ import androidx.sqlite.db.SupportSQLiteOpenHelper;
 import com.cleanup.todoc.MyApp;
 import com.cleanup.todoc.database.dao.ProjectDao;
 import com.cleanup.todoc.database.dao.TaskDao;
-import com.cleanup.todoc.model.Project;
-import com.cleanup.todoc.model.Task;
+import com.cleanup.todoc.database.entities.Project;
+import com.cleanup.todoc.database.entities.Task;
 
 import java.util.concurrent.Executors;
 
@@ -30,15 +28,19 @@ public abstract class TudocDatabase extends RoomDatabase {
     public abstract ProjectDao projectDao();
     public abstract TaskDao taskDao();
 
+    public static void setInstance(TudocDatabase database) {
+        INSTANCE = database;
+    }
+
     // -- INSTANCE --
     public static TudocDatabase getInstance(){
         if (INSTANCE == null){
             synchronized (TudocDatabase.class){
                 if(INSTANCE == null){
-                    INSTANCE = Room.databaseBuilder(MyApp.app.getApplicationContext(),
+                    setInstance(Room.databaseBuilder(MyApp.app.getApplicationContext(),
                             TudocDatabase.class, DATABASE_NAME)
                             .addCallback(prepopulateDatabase())
-                            .build();
+                            .build());
                 }
             }
         }
