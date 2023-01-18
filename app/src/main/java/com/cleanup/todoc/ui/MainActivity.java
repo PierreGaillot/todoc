@@ -200,41 +200,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     }
 
     /**
-     * Updates the list of tasks in the UI
-     */
-        /*viewModel.getTasks().observe(this, new Observer<List<Task>>() {
-            @Override
-            public void onChanged(List<Task> tasks) {
-                if (tasks.size() == 0) {
-                    lblNoTasks.setVisibility(View.VISIBLE);
-                    listTasks.setVisibility(View.GONE);
-                } else {
-                    lblNoTasks.setVisibility(View.GONE);
-                    listTasks.setVisibility(View.VISIBLE);
-                    switch (sortMethod) {
-                        case ALPHABETICAL:
-                            Collections.sort(tasks, new Task.TaskAZComparator());
-                            break;
-                        case ALPHABETICAL_INVERTED:
-                            Collections.sort(tasks, new Task.TaskZAComparator());
-                            break;
-                        case RECENT_FIRST:
-                            Collections.sort(tasks, new Task.TaskRecentComparator());
-                            break;
-                        case OLD_FIRST:
-                            Collections.sort(tasks, new Task.TaskOldComparator());
-                            break;
-
-                    }
-                    // TODO : call update adapter
-                    TasksAdapter adapter = new TasksAdapter(tasks, MainActivity.this, viewModel);
-                    listTasks.setAdapter(adapter);
-//                    TasksAdapter.updateTasks(tasks);
-                }
-            }
-        });*/
-
-    /**
      * Returns the dialog allowing the user to create a new task.
      *
      * @return the dialog allowing the user to create a new task

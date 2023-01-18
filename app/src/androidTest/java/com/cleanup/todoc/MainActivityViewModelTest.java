@@ -36,7 +36,6 @@ public class MainActivityViewModelTest {
                         .allowMainThreadQueries()
                         .build()
         );
-
         viewModel = new MainActivityViewModel();
     }
 
